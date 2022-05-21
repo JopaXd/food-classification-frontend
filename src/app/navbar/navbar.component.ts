@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-navbar',
@@ -7,11 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userSvc:UserService) { }
 
   toggle:boolean = false;
+  user:User; 
 
   ngOnInit(): void {
+    if (this.userSvc.userValue !== null){
+      this.user = this.userSvc.userValue;
+    }
+  }
+
+  logout(){
+    this.userSvc.logout();
   }
 
   toggleNavbar(){
