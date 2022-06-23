@@ -10,11 +10,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 
-import { UserService } from './user.service';
+import { UserService } from '@app/services/user.service';
 import { appInitializer } from './app.initializer';
 import { ClassificationComponent } from './classification/classification.component';
 
-import { AuthInterceptor } from './auth_interceptor'
+import { AuthInterceptor } from '@app/helpers/auth_interceptor'
 
 @NgModule({
   declarations: [

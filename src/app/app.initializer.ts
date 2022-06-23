@@ -1,4 +1,4 @@
-import { UserService } from './user.service';
+import { UserService } from '@app/services/user.service';
 
 export function appInitializer(userService: UserService) {
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ClassifierService } from '../classifier.service';
-import { UserService } from '../user.service';
+import { ClassifierService } from '@app/services/classifier.service';
+import { UserService } from '@app/services/user.service';
 
 @Component({
   selector: 'app-classification',
