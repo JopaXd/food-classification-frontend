@@ -1,0 +1,19 @@
+<div *ngIf="meal !== null" class="meal">
+	<div class="meal-content">
+		<div class="meal-img center">
+			<img src="{{ meal.img }}">
+		</div>
+		<h1 class="meal-title center">{{ meal.title }}</h1>
+		<br>
+		<h3>Ingredients:</h3>
+		<ul class="ingredients">
+			<li *ngFor="let ingr of meal.ingredients">{{ ingr }}</li>
+		</ul>
+		<br>
+		<div class="instructions">
+			{{ meal.instructions }}
+		</div>
+		<br>
+	</div>
+</div>
+<br>

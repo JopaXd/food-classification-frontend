@@ -1,0 +1,20 @@
+.meal{
+	max-width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	border: 1px solid #cccccc;
+}
+
+.meal-img{
+	padding-top: 10px;
+}
+
+.meal-content{
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.center{
+	text-align: center;
+}

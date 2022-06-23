@@ -15,7 +15,8 @@ import { appInitializer } from './app.initializer';
 import { ClassificationComponent } from './classification/classification.component';
 
 import { AuthInterceptor } from '@app/helpers/auth_interceptor';
-import { UnknownRouteComponent } from './unknown-route/unknown-route.component'
+import { UnknownRouteComponent } from './unknown-route/unknown-route.component';
+import { MealComponent } from './meal/meal.component'
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { UnknownRouteComponent } from './unknown-route/unknown-route.component'
     LoginComponent,
     SignupComponent,
     ClassificationComponent,
-    UnknownRouteComponent
+    UnknownRouteComponent,
+    MealComponent
   ],
   imports: [
     BrowserModule,
