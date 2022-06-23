@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClassifierService } from '../classifier.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-classification',
@@ -8,10 +9,11 @@ import { ClassifierService } from '../classifier.service';
 })
 export class ClassificationComponent implements OnInit {
 
-  constructor(private classifierService: ClassifierService) { }
+  constructor(private classifierService: ClassifierService, private userSvc:UserService) { }
 
 
   image: File;
+  mealResults: Array<any> = [];
 
   ngOnInit(): void {
   }
@@ -21,18 +23,21 @@ export class ClassificationComponent implements OnInit {
   }
 
   upload(){
-    this.classifierService.classify(this.image).subscribe(
-      (result:any) => {
-        // Handle result
-        let prediction = result.body.prediction;
-        console.log(prediction);
-      },
-      error => {
-        console.log(error.status)
-      },
-      () => {
-        // 'onCompleted' callback.
+    this.classifierService.classify(this.image).subscribe((req:any) => {
+      if (req.status === 401){
+        this.userSvc.logout();
       }
-    );
+      else{
+        //Get the result, then work.
+        let meal = req.body.prediction;
+        let mealSearch = this.classifierService.searchMeals(meal).subscribe((mealReq:any) => {
+          if (mealReq.status === 200){
+            mealReq.body.results.forEach((item:any) => {
+              this.mealResults.push({"id": item.id, "title": item.title, "img" : item.image});
+            })
+          }
+        });
+      }
+    });
   }
 }

@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.userSvc.userValue !== null){
+      console.log(this.userSvc.userValue)
       this.user = this.userSvc.userValue;
     }
   }

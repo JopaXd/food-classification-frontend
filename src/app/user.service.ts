@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from './models/user';
 import { map } from 'rxjs/operators';
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 
 export class UserService {
+
 
   private userSubject: BehaviorSubject<User | null>;
   public user: Observable<User | null>;
@@ -42,9 +43,7 @@ export class UserService {
       if (req.status === 200){
         let loggedInUser = new User();
         loggedInUser.email = req.body.email
-        loggedInUser.access_exp = req.body.access_exp
         this.userSubject.next(loggedInUser);
-        this.startRefreshTokenTimer(req.body.access_exp);
       }
       else{
         this.userSubject.next(null);
@@ -71,9 +70,7 @@ export class UserService {
         if (req.status === 200){
           let loggedInUser = new User();
           loggedInUser.email = req.body.email;
-          loggedInUser.access_exp = req.body.access_exp;
           this.userSubject.next(loggedInUser);
-          this.startRefreshTokenTimer(req.body.access_exp);
           return req;
         }
     }));
@@ -81,23 +78,7 @@ export class UserService {
 
   logout(){
     this.http.get('http://localhost:8000/logout', {observe: 'response', withCredentials:true}).subscribe();
-    this.stopRefreshTokenTimer();
     this.userSubject.next(null);
     this.router.navigate(['/login']);
   }
-
-  private refreshTokenTimeout:any;
-
-  private startRefreshTokenTimer(exp: string) {
-
-    // set a timeout to refresh the token a minute before it expires
-    const expires = new Date(exp);
-    const timeout = expires.getTime() - Date.now() - (60 * 1000);
-    this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
-  }
-
-  private stopRefreshTokenTimer() {
-    clearTimeout(this.refreshTokenTimeout);
-  }
-
 }
