@@ -7,6 +7,7 @@
 		<div *ngIf="!user" class="nav-item"><a class="nav-link" routerLink="/login">Login</a></div>
 		<div *ngIf="!user" class="nav-item"><a class="nav-link" routerLink="/signup">Sign Up</a></div>
 		<div *ngIf="user" class="nav-item"><a routerLink="/classification" class="nav-link">Classify</a></div>
+		<div *ngIf="user" class="nav-item"><a routerLink="/likedposts" class="nav-link">Liked Posts</a></div>
 		<div *ngIf="user" class="nav-item"><a (click)="logout()" href="#" class="nav-link">Logout</a></div>
 	</div>
 	<div class="nav-items-right">

@@ -1,0 +1,9 @@
+<h1 class="main-title">Liked Meals</h1>
+
+<div class="cards">
+	<div *ngFor="let meal of meals" class="card">
+		<img class="card-img" src="{{ meal.img }}"/>
+		<br>
+		<a class="card-text" href="/meal/{{ meal.id }}">{{ meal.title }}</a>
+	</div>
+</div>

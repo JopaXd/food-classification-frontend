@@ -11,7 +11,6 @@ export class AuthInterceptor implements HttpInterceptor {
 	constructor(private userSvc:UserService) {}
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<Object>> {
 		return next.handle(req).pipe(catchError(error => {
-			//Consider adding users/me to this list.
 			if (error instanceof HttpErrorResponse && !req.url.includes('/refresh') && !req.url.includes("/authenticate") && error.status === 401){
 				return this.handleAuthError(req, next);
 			}

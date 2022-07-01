@@ -4,6 +4,9 @@
 			<img src="{{ meal.img }}">
 		</div>
 		<h1 class="meal-title center">{{ meal.title }}</h1>
+		<div class="like_btn">
+			<button (click)="likeBtn_click()" id="like_post_btn">{{ likeBtnText }}</button>			
+		</div>
 		<br>
 		<h3>Ingredients:</h3>
 		<ul class="ingredients">

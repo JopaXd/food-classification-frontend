@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClassifierService } from '@app/services/classifier.service';
 import { UserService } from '@app/services/user.service';
+import { MealService } from '@app/services/meal.service'
 
 @Component({
   selector: 'app-classification',
@@ -9,7 +10,7 @@ import { UserService } from '@app/services/user.service';
 })
 export class ClassificationComponent implements OnInit {
 
-  constructor(private classifierService: ClassifierService, private userSvc:UserService) { }
+  constructor(private classifierService: ClassifierService, private userSvc:UserService, private mealService: MealService) { }
 
 
   image: File;
@@ -30,7 +31,7 @@ export class ClassificationComponent implements OnInit {
       else{
         //Get the result, then work.
         let meal = req.body.prediction;
-        let mealSearch = this.classifierService.searchMeals(meal).subscribe((mealReq:any) => {
+        let mealSearch = this.mealService.searchMeals(meal).subscribe((mealReq:any) => {
           if (mealReq.status === 200){
             mealReq.body.results.forEach((item:any) => {
               this.mealResults.push({"id": item.id, "title": item.title, "img" : item.image});

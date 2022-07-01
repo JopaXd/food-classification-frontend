@@ -26,6 +26,7 @@ export class UserService {
       if (req.status === 200){
         let loggedInUser = new User();
         loggedInUser.email = req.body.email
+        loggedInUser.id = req.body.id
         this.userSubject.next(loggedInUser);
       }
       else{
@@ -43,6 +44,7 @@ export class UserService {
       if (req.status === 200){
         let loggedInUser = new User();
         loggedInUser.email = req.body.email
+        loggedInUser.id = req.body.id
         this.userSubject.next(loggedInUser);
       }
       else{
@@ -53,9 +55,8 @@ export class UserService {
   }
 
   createUser(email:string, password:string) {
-    const headers = {'content-type': 'application/json'}  
     const body = {"email" : email, "password" : password}
-    return this.http.post('http://localhost:8000/signup', body, {"headers": headers, observe: 'response'})
+    return this.http.post('http://localhost:8000/signup', body, {observe: 'response'})
   }
 
   public get userValue(): User | null {
@@ -63,9 +64,8 @@ export class UserService {
   }
 
   login(email:string, password:string){
-    const headers = {'content-type': 'application/json'}  
     const body = {"email" : email, "password" : password}
-    return this.http.post('http://localhost:8000/authenticate', body, {"headers": headers, observe: 'response', withCredentials:true})
+    return this.http.post('http://localhost:8000/authenticate', body, {observe: 'response', withCredentials:true})
     .pipe(map((req: any) => {
         if (req.status === 200){
           let loggedInUser = new User();

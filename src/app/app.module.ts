@@ -16,7 +16,8 @@ import { ClassificationComponent } from './classification/classification.compone
 
 import { AuthInterceptor } from '@app/helpers/auth_interceptor';
 import { UnknownRouteComponent } from './unknown-route/unknown-route.component';
-import { MealComponent } from './meal/meal.component'
+import { MealComponent } from './meal/meal.component';
+import { LikedPostsComponent } from './liked-posts/liked-posts.component'
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MealComponent } from './meal/meal.component'
     SignupComponent,
     ClassificationComponent,
     UnknownRouteComponent,
-    MealComponent
+    MealComponent,
+    LikedPostsComponent
   ],
   imports: [
     BrowserModule,
