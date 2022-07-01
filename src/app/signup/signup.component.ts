@@ -16,6 +16,8 @@ export class SignupComponent implements OnInit {
       password: ''
     });
 
+  error:string = "";
+
   ngOnInit(): void {
 
   }
@@ -28,7 +30,13 @@ export class SignupComponent implements OnInit {
         window.location.href = "/login"
       },
       error => {
-        console.log(error.status)
+        if (error.status === 400){
+          //User already exists
+          this.error = "A user with this email already exists!";
+        }
+        else{
+          this.error = "Unknown error!";
+        }
       },
       () => {
         // 'onCompleted' callback.

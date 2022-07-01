@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit {
       password: ''
     });
 
+  error:string = "";
+
   ngOnInit(): void {
     if (this.userSvc.userValue !== null){
       window.location.href = "/";
@@ -34,7 +36,12 @@ export class LoginComponent implements OnInit {
         window.location.href = this.returnUrl;
       },
       error => {
-        console.log(error)
+        if (error.status === 401){
+          this.error = "Incorrent username or password.";
+        }
+        else{
+          this.error = "Unknown error!";
+        }
       },
       () => {
         // 'onCompleted' callback.

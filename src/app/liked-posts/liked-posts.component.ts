@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PostsService } from '@app/services/posts.service'
-import { MealService } from '@app/services/meal.service'
+import { PostsService } from '@app/services/posts.service';
+import { MealService } from '@app/services/meal.service';
+import { UserService } from '@app/services/user.service';
 
 @Component({
   selector: 'app-liked-posts',
@@ -9,7 +10,7 @@ import { MealService } from '@app/services/meal.service'
 })
 export class LikedPostsComponent implements OnInit {
 
-  constructor(private postsService: PostsService, private mealService: MealService) { }
+  constructor(private postsService: PostsService, private mealService: MealService, private userSvc:UserService) { }
 
   meals: Array<any> = [];
 
@@ -28,7 +29,7 @@ export class LikedPostsComponent implements OnInit {
         })
       }
       else if (req.status === 401){
-        //Logout
+        this.userSvc.logout();
       }
     })
   }
