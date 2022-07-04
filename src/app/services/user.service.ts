@@ -77,8 +77,9 @@ export class UserService {
   }
 
   logout(){
-    this.http.get('http://localhost:8000/logout', {observe: 'response', withCredentials:true}).subscribe();
-    this.userSubject.next(null);
-    this.router.navigate(['/login']);
+    this.http.get('http://localhost:8000/logout', {observe: 'response', withCredentials:true}).subscribe((req:any) => {
+      this.userSubject.next(null);
+      window.location.href = "/login";
+    });
   }
 }

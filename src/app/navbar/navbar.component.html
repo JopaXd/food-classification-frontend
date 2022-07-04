@@ -3,15 +3,15 @@
 	<div class="center"><p>Food Classification</p></div>
 	<div class="right"><button (click)="toggleNavbar()" class="nav-btn">=</button></div>
 	<div class="nav-items-left">
-		<div class="nav-item"><a class="nav-link" routerLink="/">Home</a></div>
-		<div *ngIf="!user" class="nav-item"><a class="nav-link" routerLink="/login">Login</a></div>
-		<div *ngIf="!user" class="nav-item"><a class="nav-link" routerLink="/signup">Sign Up</a></div>
-		<div *ngIf="user" class="nav-item"><a routerLink="/classification" class="nav-link">Classify</a></div>
-		<div *ngIf="user" class="nav-item"><a routerLink="/likedposts" class="nav-link">Liked Posts</a></div>
+		<div class="nav-item"><a class="nav-link" href="/">Home</a></div>
+		<div *ngIf="!user" class="nav-item"><a class="nav-link" href="/login">Login</a></div>
+		<div *ngIf="!user" class="nav-item"><a class="nav-link" href="/signup">Sign Up</a></div>
+		<div *ngIf="user" class="nav-item"><a href="/classification" class="nav-link">Classify</a></div>
+		<div *ngIf="user" class="nav-item"><a href="/likedposts" class="nav-link">Liked Posts</a></div>
 		<div *ngIf="user" class="nav-item"><a (click)="logout()" href="#" class="nav-link">Logout</a></div>
 	</div>
 	<div class="nav-items-right">
-		<div *ngIf="user" class="nav-item"><a class="nav-link" routerLink="#">{{ user.email }}</a></div>
+		<div *ngIf="user" class="nav-item"><a class="nav-link">{{ user.email }}</a></div>
 		<div class="nav-item"><a class="nav-link" href="#">About</a></div>
 	</div>
 </div>
